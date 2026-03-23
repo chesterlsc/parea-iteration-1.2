@@ -54,6 +54,18 @@ What was implemented:
 - The three principle cards were redesigned as equal rectangular evolution cards that progress from simple to more resolved from left to right.
 - The principle cards now use layered back-planes, a front-face content layer, desktop hover behavior, and mobile horizontal scrolling while staying visually aligned with the rest of the site.
 
+## Latest Polish Pass
+
+The most recent refinements focused on the post-landing ecosystem spotlight and the philosophy cards.
+
+- Rebuilt the post-landing ecosystem cards into a single desktop row with one default featured card on the left and three supporting cards on the right.
+- Kept `Aegis & Co.` as the default featured card and added desktop hover behavior so supporting cards can expand in place without changing card order.
+- Updated the ecosystem cards with a darker green premium treatment, centered hierarchy, gold labels, cleaner supporting copy, and CTA icons.
+- Tuned the ecosystem hover timing and sizing transitions to feel slower, smoother, and more stable on desktop while leaving mobile simple.
+- Added numbered philosophy pills (`01`, `02`, `03`) and short supporting lines so the philosophy cards feel more structured and complete.
+- Refined the philosophy card spacing, height, and stacked-layer progression so the row reads more clearly from simplest to most resolved.
+- Fixed the philosophy hover behavior so the stacked layers on cards `02` and `03` collapse back into the card cleanly and stay visually anchored in place.
+
 ## Current Site Structure
 
 The current homepage order is:

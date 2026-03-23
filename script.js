@@ -5,6 +5,7 @@ const menuToggle = document.querySelector("[data-menu-toggle]");
 const navLinks = document.querySelectorAll(".mobile-nav a, .mobile-cta");
 const revealItems = document.querySelectorAll(".reveal");
 const carousels = document.querySelectorAll("[data-carousel]");
+const spotlightEcosystem = document.querySelector("[data-spotlight-ecosystem]");
 
 if (menuToggle && header) {
   menuToggle.addEventListener("click", () => {
@@ -17,6 +18,90 @@ if (menuToggle && header) {
       header.classList.remove("is-open");
       menuToggle.setAttribute("aria-expanded", "false");
     });
+  });
+}
+
+if (spotlightEcosystem) {
+  const spotlightCards = Array.from(spotlightEcosystem.querySelectorAll("[data-spotlight-card]"));
+  const spotlightWide = window.matchMedia("(min-width: 861px)");
+  const spotlightHover = window.matchMedia("(min-width: 861px) and (hover: hover) and (pointer: fine)");
+  const defaultFeaturedIndex = "0";
+  let spotlightHoverTimer = 0;
+  let spotlightResetTimer = 0;
+
+  const clearSpotlightTimers = () => {
+    window.clearTimeout(spotlightHoverTimer);
+    window.clearTimeout(spotlightResetTimer);
+  };
+
+  const setFeaturedSpotlightCard = (index) => {
+    const nextIndex = String(index);
+
+    if (spotlightEcosystem.dataset.featuredCard === nextIndex) {
+      return;
+    }
+
+    spotlightEcosystem.dataset.featuredCard = nextIndex;
+  };
+
+  const resetSpotlightLayout = () => {
+    setFeaturedSpotlightCard(defaultFeaturedIndex);
+  };
+
+  spotlightCards.forEach((card, index) => {
+    card.addEventListener("mouseenter", () => {
+      if (!spotlightHover.matches) {
+        return;
+      }
+
+      window.clearTimeout(spotlightResetTimer);
+      window.clearTimeout(spotlightHoverTimer);
+      spotlightHoverTimer = window.setTimeout(() => {
+        setFeaturedSpotlightCard(index);
+      }, 90);
+    });
+
+    card.addEventListener("focusin", () => {
+      if (!spotlightWide.matches) {
+        return;
+      }
+
+      clearSpotlightTimers();
+      setFeaturedSpotlightCard(index);
+    });
+  });
+
+  spotlightEcosystem.addEventListener("mouseleave", () => {
+    if (!spotlightHover.matches || spotlightEcosystem.matches(":focus-within")) {
+      return;
+    }
+
+    window.clearTimeout(spotlightHoverTimer);
+    spotlightResetTimer = window.setTimeout(() => {
+      resetSpotlightLayout();
+    }, 120);
+  });
+
+  spotlightEcosystem.addEventListener("focusout", (event) => {
+    if (spotlightEcosystem.contains(event.relatedTarget)) {
+      return;
+    }
+
+    clearSpotlightTimers();
+    resetSpotlightLayout();
+  });
+
+  window.addEventListener("resize", () => {
+    clearSpotlightTimers();
+
+    if (!spotlightWide.matches) {
+      resetSpotlightLayout();
+      return;
+    }
+
+    if (!spotlightEcosystem.dataset.featuredCard) {
+      resetSpotlightLayout();
+    }
   });
 }
 
