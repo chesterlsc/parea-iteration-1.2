@@ -622,11 +622,6 @@ dd {
     max-width var(--spotlight-swap-duration) var(--spotlight-swap-ease);
 }
 
-.spotlight-ecosystem .spotlight-copy p strong {
-  color: rgba(255, 255, 255, 0.98);
-  font-weight: 600;
-}
-
 .spotlight-ecosystem .spotlight-link {
   margin-top: auto;
   display: inline-flex;
@@ -649,10 +644,24 @@ dd {
 }
 
 .spotlight-link-icon {
-  display: inline-block;
-  font-size: 0.94em;
-  line-height: 1;
-  transform: translateY(-0.02em);
+  display: inline-flex;
+  width: 1.08rem;
+  height: 1.08rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.02rem;
+  transform: translateY(-0.01em);
+}
+
+.spotlight-link-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
 }
 
 .spotlight-link {
@@ -2516,8 +2525,11 @@ dd {
   }
 
   .hero-main .eyebrow {
-    max-width: 28ch;
+    max-width: none;
     margin-bottom: 0.7rem;
+    font-size: clamp(0.64rem, 2.1vw, 0.72rem);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
   }
 
   .hero-mobile-break {
