@@ -177,7 +177,7 @@ carousels.forEach((carousel) => {
       tone: "operations",
     },
     {
-      name: "NAMI.",
+      name: "NAMI Studio",
       category: "Marketing",
       lead: "Where positioning, design, and communication get aligned.",
       support: "Clear positioning. No mixed signals.",
